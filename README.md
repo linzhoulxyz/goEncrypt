@@ -9,7 +9,7 @@ go语言封装的各种对称加密和非对称加密，可以直接使用，包
 使用方法
 
 ```
-go get github.com/wumansgy/goEncrypt
+go get github.com/linzhoulxyz/goEncrypt
 ```
 
 然后下载到本地可以直接调用，包括了DES的CBC模式的加密解密（虽然DES早就被破解，但是可以参考使用），三重DES的加密解密（可以使用），AES的CBC模式和CTR模式（对称加密中常用的加密算法），非对称加密RSA的加密解密（比较常用的非对称加密算法），椭圆曲线加密算法（后面更新），还有哈希函数sha256，sha512的快速使用（MD5，SHA1已经在2004，2005年被陆续攻破，现在常用sha256和sha512）
@@ -62,11 +62,11 @@ func main(){
 	fmt.Println("明文为：",string(plaintext))
 
 	//传入明文和自己定义的密钥，密钥为16字节，如果不足16字节函数内部自动补全，超过16字节函数内部截取
-	cryptText := goEncrypt.AesCBC_Encrypt(plaintext, []byte("wumansgygoaescry"))
+	cryptText := goEncrypt.AesCBC_Encrypt(plaintext, []byte("wumansgygoaescry"), []byte("wumansgygoaescry"))
 	fmt.Println("AES的CBC模式加密后的密文为:", base64.StdEncoding.EncodeToString(cryptText))
 
 	//传入密文和自己定义的密钥，需要和加密的密钥一样，不一样会报错，16字节，如果不足16字节函数内部自动补全，超过16字节函数内部截取
-	newplaintext := goEncrypt.AesCBC_Decrypt(cryptText, []byte("wumansgygoaescry"))
+	newplaintext := goEncrypt.AesCBC_Decrypt(cryptText, []byte("wumansgygoaescry"), []byte("wumansgygoaescry"))
 
 	fmt.Println("AES的CBC模式解密完：", string(newplaintext))
 }
