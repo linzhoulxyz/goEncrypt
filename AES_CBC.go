@@ -55,7 +55,7 @@ func AesCBC_Encrypt(plainText, key, iv []byte) []byte {
 	} else if ivlen > blockLen { // 截取
 		iv = iv[:blockLen]
 	}
-	fmt.Printf("iv: %v, %s", iv, iv)
+	//fmt.Printf("iv: %v, %s", iv, iv)
 	blockMode := cipher.NewCBCEncrypter(block, iv)
 	//4. 加密
 	cipherText := make([]byte, len(paddingText))
